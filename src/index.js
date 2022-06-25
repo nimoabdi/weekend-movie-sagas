@@ -34,40 +34,11 @@ function* fetchAllMovies() {
 }
 
 function* fetchDetails(action) {
-    const details = yield axios.get(`/api/movie/${action.payload}`);
+    const details = yield axios.get(`/api/movie/movieDetail/${action.payload}`);
     console.log('in fetch details', details.data);
 
     yield put ({type: 'FETCH_DETAILS', payload: details.data[0]})
 }
-
-// function* fetchGenres(action) {
-//     try{
-//         const genres = yield axios.get(`api/genre/${action.payload}`)
-   
-//         yield put({ type:'SET_GENRES', payload: genres.data })
-//         console.log(genres.data)
-//     } catch{
-//         console.log('error in fetchGenres');
-//     }
-// }
-
-// function* addMovies(action) {
-//     try{
-//         console.log(action.payload)
-
-//         console.log('this is the post payload:',action.payload);
-//         const response = yield axios({
-//           method: 'POST',
-//           url: `/api/movie`,
-//           data: action.payload
-//         })
-
-//         yield put({ type: 'SET_MOVIES', payload: newMovie.data })
-//         console.log(response)
-//     } catch{
-//         console.log('error in CreateMovie');
-//     }
-// }
 
 // Create sagaMiddleware
 const sagaMiddleware = createSagaMiddleware();

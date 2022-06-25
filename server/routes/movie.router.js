@@ -17,16 +17,23 @@ router.get('/', (req, res) => {
 });
 // this will get the movies from the database
 
-router.get('/:id', (req, res)=> {
-  const queryText = 'SELECT * FROM movies WHERE id= $1';
-  pool.query(queryText, [req.params.id])
-  .then( result => {
-    res.send(result.rows);
-  })
-  .catch(err => {
-    console.log('ERROR: Get movies DB', err);
-    res.sendStatus(500)
-  })
+router.get('/movieDetail:id', (req, res)=> {
+    const sqlQuery = `
+    SELECT ARRAY_AGG(genres.name) as name, movies.description as description, movies.id as id, movies.poster as poster, movies.title as title FROM movies
+    JOIN movies_genres ON movies_genres.movie_id = movies.id
+    JOIN genres ON movies_genres.genre_id = genres.id
+    WHERE movies.id = $1
+    GROUP BY movies.id;
+    `;
+
+    const sqlParams = [req.params.id]
+    pool.query(sqlQuery, sqlParams)
+    .then((response) => {
+      res.send(response.rows);
+    })
+    .catch((error)=> {
+      console.log('ERR in get db', error);
+    })
 
 });
 

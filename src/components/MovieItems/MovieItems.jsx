@@ -1,10 +1,10 @@
 import React, { useEffect } from 'react';
 import { useDispatch} from 'react-redux';
-import { useHistory } from 'react-router-dom'; 
+// import { useHistory } from 'react-router-dom'; 
 import { useState } from 'react';
 
 function MovieItems() {
-    const history = useHistory();
+    // const history = useHistory();
     const dispatch = useDispatch();
     console.log('in movie details');
     
@@ -15,14 +15,14 @@ function MovieItems() {
     const getMovie = (evt) => {
         evt.preventDefault();
         dispatch({
-            type: 'GET_DETAILS',
+            type: 'ADD_MOVIE',
             payload: {
                 title: title,
                 poster: poster,
                 description: description
             }
         })
-        history.push('/details')
+        // history.push('/details')
     }
     // drop down for movies
     return (
