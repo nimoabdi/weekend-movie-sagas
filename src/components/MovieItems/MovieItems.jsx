@@ -3,34 +3,34 @@ import { useDispatch} from 'react-redux';
 import { useHistory } from 'react-router-dom'; 
 import { useState } from 'react';
 
-function MovieItems({}) {
+function MovieItems() {
     const history = useHistory();
     const dispatch = useDispatch();
-    console.log('in movie details', details);
+    console.log('in movie details');
     
     const [title, setTitle] = useState('');
-    const [url, setUrl] = useState('');
+    const [poster, setPoster] = useState('');
     const [description, setDescription] = useState('');
     
     const getMovie = (evt) => {
         evt.preventDefault();
         dispatch({
-            type: 'ADD_MOVIE',
+            type: 'GET_DETAILS',
             payload: {
                 title: title,
-                url: url,
+                poster: poster,
                 description: description
             }
         })
         history.push('/details')
     }
-    
+    // drop down for movies
     return (
         <div>
             <h2>Add a movie 🎥</h2>
                 <form onSubmit={getMovie}>
                      <input type='text' value={title} placeholder='Title' onChange={(e)=> {setTitle(e.target.value)}}/>
-                     <input type='text' value={url} placeholder='Url'  onChange={(e)=> {setUrl(e.target.value)}}/>
+                     <input type='text' value={poster} placeholder='Poster'  onChange={(e)=> {setPoster(e.target.value)}}/>
                      <input type='text' value={description} placeholder='Description'  onChange={(e)=> {setDescription(e.target.value)}}/>
         
                      <select>
