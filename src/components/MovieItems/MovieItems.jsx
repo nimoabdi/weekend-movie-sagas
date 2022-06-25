@@ -1,24 +1,34 @@
 import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { useState } from 'react';
+import { useDispatch} from 'react-redux';
 import { useHistory } from 'react-router-dom'; 
+import { useState } from 'react';
 
-function MovieDetails({}) {
+function MovieItems({}) {
     const history = useHistory();
     const dispatch = useDispatch();
-    const details = useSelector(store=> store.details);
     console.log('in movie details', details);
 
-    const getMovie = () => {
+    const [title, setTitle] = useState('');
+    const [url, setUrl] = useState('');
+    const [description, setDescription] = useState('');
+
+    const getMovie = (evt) => {
+        evt.preventDefault();
         dispatch({
-            type: 'FETCH_MOVIES'
+            type: 'ADD_MOVIE',
+            payload: {
+                title: title,
+                url: url,
+                description: description
+            }
         })
+        history.push('/details')
     }
 
     return (
-        <>
-        
-        </>
+        <div>
+            
+        </div>
     )
 }
-export default MovieDetails;
+export default MovieItems;
