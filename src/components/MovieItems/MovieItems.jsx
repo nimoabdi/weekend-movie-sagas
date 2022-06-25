@@ -3,11 +3,17 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useState } from 'react';
 import { useHistory } from 'react-router-dom'; 
 
-function MovieDetails() {
+function MovieDetails({}) {
     const history = useHistory();
-    const dispatch = dispatch();
+    const dispatch = useDispatch();
     const details = useSelector(store=> store.details);
     console.log('in movie details', details);
+
+    const getMovie = () => {
+        dispatch({
+            type: 'FETCH_MOVIES'
+        })
+    }
 
     return (
         <>
