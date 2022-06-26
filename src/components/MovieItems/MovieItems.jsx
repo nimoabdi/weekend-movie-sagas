@@ -1,11 +1,12 @@
 import React, { useEffect } from 'react';
 import { useDispatch} from 'react-redux';
-// import { useHistory } from 'react-router-dom'; 
+import { useHistory } from 'react-router-dom'; 
 import { useState } from 'react';
 
 function MovieItems() {
-    // const history = useHistory();
+    const history = useHistory();
     const dispatch = useDispatch();
+    
     console.log('in movie details');
     
     const [title, setTitle] = useState('');
@@ -22,18 +23,18 @@ function MovieItems() {
                 description: description
             }
         })
-        // history.push('/details')
+        // history.push('/')
     }
     // drop down for movies
     return (
         <div>
             <h2>Add a movie 🎥</h2>
                 <form onSubmit={getMovie}>
-                     <input type='text' value={title} placeholder='Title' onChange={(e)=> {setTitle(e.target.value)}}/>
-                     <input type='text' value={poster} placeholder='Poster'  onChange={(e)=> {setPoster(e.target.value)}}/>
-                     <input type='text' value={description} placeholder='Description'  onChange={(e)=> {setDescription(e.target.value)}}/>
+                     <input type='text' value={title} placeholder='Title' onChange={(evt)=> {setTitle(evt.target.value)}}/>
+                     <input type='text' value={poster} placeholder='Poster'  onChange={(evt)=> {setPoster(evt.target.value)}}/>
+                     <input type='text' value={description} placeholder='Description'  onChange={(evt)=> {setDescription(evt.target.value)}}/>
         
-                     <select>
+                     {/* <select>
                         <option value="1">Adventure</option>
                         <option value="2">Animated</option>
                         <option value="3">Biographical</option>
@@ -47,7 +48,7 @@ function MovieItems() {
                         <option value="11">Science Fiction</option>
                         <option value="12">Space Opera</option>
                         <option value="13">Superhero</option>
-                     </select>
+                     </select> */}
                      <button>Add a New Movie</button>
                  </form>
         </div>

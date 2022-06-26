@@ -17,7 +17,7 @@ router.get('/', (req, res) => {
 });
 // this will get the movies from the database
 
-router.get('/movieDetail:id', (req, res)=> {
+router.get('/movieDetail/:id', (req, res)=> {
     const sqlQuery = `
     SELECT ARRAY_AGG(genres.name) as name, movies.description as description, movies.id as id, movies.poster as poster, movies.title as title FROM movies
     JOIN movies_genres ON movies_genres.movie_id = movies.id
