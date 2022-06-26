@@ -2,6 +2,8 @@ import {useDispatch, useSelector} from 'react-redux';
 import {useParams} from 'react-router-dom';
 import {useEffect} from 'react';
 import { useHistory } from 'react-router-dom';
+import Button from '@material-ui/core/Button'
+
 function MovieDetails() {
     const dispatch = useDispatch();
     const history = useHistory();
@@ -29,7 +31,7 @@ function MovieDetails() {
                     <h2>{fetchDetails.title}</h2>
                     <img src={fetchDetails.poster}/>
                     <p>{fetchDetails.description}</p>
-                    <button onClick= {backToHome}>home</button>
+                    <Button type='submit' color='secondary' variant="contained" onClick= {backToHome}>home</Button>
                 </div>
                
         

@@ -2,6 +2,9 @@ import React, { useEffect } from 'react';
 import { useDispatch} from 'react-redux';
 import { useHistory } from 'react-router-dom'; 
 import { useState } from 'react';
+import Button from '@material-ui/core/Button'
+import TextField from '@material-ui/core/TextField'
+// import {Select, MenuItem} from '@material-ui/core'
 
 function MovieItems() {
     const history = useHistory();
@@ -29,12 +32,14 @@ function MovieItems() {
     return (
         <div>
             <h2>Add a movie 🎥</h2>
-                <form onSubmit={getMovie}>
-                     <input type='text' value={title} placeholder='Title' onChange={(evt)=> {setTitle(evt.target.value)}}/>
-                     <input type='text' value={poster} placeholder='Poster'  onChange={(evt)=> {setPoster(evt.target.value)}}/>
-                     <input type='text' value={description} placeholder='Description'  onChange={(evt)=> {setDescription(evt.target.value)}}/>
+                <form noValidate autoComplete='off' 
+                onSubmit={getMovie}>
+            
+                     <TextField label='Title' variant='outlined' color='secondary' type='text' value={title} onChange={(evt)=> {setTitle(evt.target.value)}}/>
+                     <TextField label='Poster' variant='outlined' color='secondary' type='text' value={poster} onChange={(evt)=> {setPoster(evt.target.value)}}/>
+                     <TextField label='Description' variant='outlined' color='secondary' type='text' value={description} onChange={(evt)=> {setDescription(evt.target.value)}}/>
         
-                     {/* <select>
+                     <select >
                         <option value="1">Adventure</option>
                         <option value="2">Animated</option>
                         <option value="3">Biographical</option>
@@ -48,8 +53,8 @@ function MovieItems() {
                         <option value="11">Science Fiction</option>
                         <option value="12">Space Opera</option>
                         <option value="13">Superhero</option>
-                     </select> */}
-                     <button>Add a New Movie</button>
+                     </select>
+                     <Button type='submit' color='secondary' variant='outlined'>Add a New Movie</Button>
                  </form>
         </div>
         )

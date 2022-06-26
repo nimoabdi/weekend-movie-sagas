@@ -15,7 +15,7 @@ function MovieList() {
         dispatch({ type: 'FETCH_MOVIES' });
     
     }, []);
-    history.push('/')
+   
 
     return (
         <main>
